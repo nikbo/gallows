@@ -1,4 +1,5 @@
 class Picture
+  attr_reader :ch
   attr_accessor :head_1, :head_2, :head_3, :head_4, :head_5, :hand_1, :hand_2, :body_1, :body_2, :left_foot_1, :left_foot_2, :right_foot_1, :right_foot_2, :w
   def initialize(words)
     @words=words
@@ -7,7 +8,7 @@ class Picture
     @head_3="\\"
     @head_4="/"
     @head_5="|"
-    @hand_1="---"
+    @hand_1="----"
     @hand_2="----"
     @body_1="|"
     @body_2="|"
@@ -19,6 +20,7 @@ class Picture
     @n=0
     @m=0
     @z=0
+    @ch=0
   end
   def pic
     puts "
@@ -26,7 +28,7 @@ class Picture
    #{@head_1} #{@head_2}              |
    #{@head_3} #{@head_4}              |
     #{@head_5}               |
- #{@hand_1}#{@hand_2}            |
+ #{@hand_1}#{@hand_2}           |
     #{@body_1}               |
     #{@body_2}               |
    #{@left_foot_1}#{@right_foot_1}               |
@@ -69,18 +71,26 @@ class Picture
       @body_2=" "
     elsif @m<1 && @hand_1!=" " && @hand_2!=" "
       puts "There is no such letter!"
-      @hand_1=" "
+      @hand_1="       "
       @hand_2=" "
-    elsif @m<1 && @head_1!=" " && @head_2!=" " && @head_3!=" " && @head_4!=" " && @head_5!=" "
-      puts "There is no such letter!"
+    elsif @m<1 && @head_5!=" "
       @head_1=" "
       @head_2=" "
       @head_3=" "
       @head_4=" "
       @head_5=" "
+      pic
+      puts "There is no such letter!"
       puts "You are lose!"
       exit
     end
     @m=0
+  end
+  def check
+    if @k[@words.word[@ran].length-1]!="--" && @k[@words.word[@ran].length-2]!="--" && @k[0]!="--"
+      @ch=1
+      puts"You win!!!"
+    end
+
   end
 end

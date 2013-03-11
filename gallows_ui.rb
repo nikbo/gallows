@@ -1,5 +1,14 @@
 require './lib/picture'
+require './lib/words'
+require './lib/check'
 
-picture=Picture.new
-puts "Hi, it's gallow game"
+words=Words.new
+check=Check.new
+picture=Picture.new(words)
+puts "Hi, it's gallows game"
+picture.add(words.random)
+picture.pic
+puts "Enter your letter"
+player_choice=gets.chomp
+picture.choice(player_choice)
 picture.pic
